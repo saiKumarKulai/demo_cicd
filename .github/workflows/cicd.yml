@@ -19,6 +19,7 @@ jobs:
       - name: Build Project
         run: npm run build
       - name: Deploy
+        if: github.event_name == 'push'
         run: npx surge --project ./build --domain kind-building.surge.sh
         env:
           SURGE_LOGIN: ${{secrets.surge_email}}
